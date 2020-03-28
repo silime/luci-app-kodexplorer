@@ -3,6 +3,7 @@ module("luci.controller.kodexplorer", package.seeall)
 
 local http = require "luci.http"
 local api = require "luci.model.cbi.kodexplorer.api"
+local api1 = require "luci.model.cbi.kodexplorer.api1"
 
 function index()
     if not nixio.fs.access("/etc/config/kodexplorer") then return end
@@ -13,7 +14,11 @@ function index()
 
     entry({"admin", "nas", "kodexplorer", "check"}, call("action_check")).leaf =
         true
+    entry({"admin", "nas", "kodexplorer", "check1"}, call("action_check1")).leaf =
+        true
     entry({"admin", "nas", "kodexplorer", "download"}, call("action_download")).leaf =
+        true
+    entry({"admin", "nas", "kodexplorer", "download1"}, call("action_download1")).leaf =
         true
     entry({"admin", "nas", "kodexplorer", "status"}, call("act_status")).leaf =
         true
@@ -39,6 +44,10 @@ function action_check()
     local json = api.to_check()
     http_write_json(json)
 end
+function action_check1()
+    local json = api1.to_check()
+    http_write_json(json)
+end
 
 function action_download()
     local json = nil
@@ -49,6 +58,18 @@ function action_download()
         json = api.to_move(http.formvalue("file"))
     else
         json = api.to_download(http.formvalue("url"))
+    end
+    http_write_json(json)
+end
+function action_download1()
+    local json = nil
+    local task = http.formvalue("task")
+    if task == "extract" then
+        json = api1.to_extract(http.formvalue("file"))
+    elseif task == "move" then
+        json = api1.to_move(http.formvalue("file"))
+    else
+        json = api1.to_download(http.formvalue("url"))
     end
     http_write_json(json)
 end
