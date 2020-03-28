@@ -58,4 +58,9 @@ o.inputstyle = "apply"
 o.btnclick = "downloadClick(this);"
 o.id = "download_btn"
 
+o = s:option(Button, "download", translate("Manually update"), translate("download New kodbox"))
+o.template = "kodexplorer/download"
+o.inputstyle = "apply"
+o.btnclick = "downloadClick(this);"
+
 return m
