@@ -58,10 +58,4 @@ o.inputstyle = "apply"
 o.btnclick = "downloadClick(this);"
 o.id = "download_btn"
 
-o = s:option(Button, "download", translate("Manually update1"), translate("download New kodebox"))
-o.inputstyle = "apply"
-function o.write (self, section, value)
-    luci.sys.call ( "wget -O /tmp/kodbox.zip https://github.com/silime/luci-app-kodexplorer/releases/download/1.06/kodbox.1.06.zip > /dev/null")
-    luci.sys.call ( "unzip -d /tmp/kodexplorer /tmp/kodbox.zip > /dev/null")
-end 
 return m
