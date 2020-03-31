@@ -3,7 +3,6 @@ module("luci.controller.kodexplorer", package.seeall)
 
 local http = require "luci.http"
 local api = require "luci.model.cbi.kodexplorer.api"
-local api1 = require "luci.model.cbi.kodexplorer.api1"
 
 function index()
     if not nixio.fs.access("/etc/config/kodexplorer") then return end
