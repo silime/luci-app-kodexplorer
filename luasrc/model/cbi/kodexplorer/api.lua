@@ -8,8 +8,8 @@ module("luci.model.cbi.kodexplorer.api", package.seeall)
 
 local appname = "kodexplorer"
 local api_url =
-    "https://api.github.com/repos/kalcaddle/KodExplorer/releases/latest"
-local download_url = "https://github.com/kalcaddle/KodExplorer/archive/"
+    "https://api.github.com/repos/silime/KodExplorer/releases/latest"
+local download_url = "https://github.com/silime/KodExplorer/archive/"
 
 local wget = "/usr/bin/wget"
 local wget_args = {
